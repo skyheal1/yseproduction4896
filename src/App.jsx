@@ -94,6 +94,11 @@ const THEMES = [
   { id: "ricepaper", name: "宣纸水墨", bg: "#f3f0e8", card: "#fbf9f3", ink: "#2b2b28", soft: "#928c80", accent: "#9c3a32", gold: "#a89878", line: "#e3ddcf", orn: "墨" },
 ];
 
+/* ====== 精选成品请帖（外部链接） ====== */
+const SHOWCASE_TEMPLATES = [
+  { id: "coco-martin", name: "Coco & Martin 中式", url: "https://coco-martin-chinese-invitation.yse-producti-3768.chatgpt.site/?v=photo2", bg: "#b3232a", ink: "#fdf3e3", gold: "#e8b04b", orn: "囍" },
+];
+
 /* ====== 4 种开场动画 ====== */
 const OPENINGS = [
   { id: "envelope", name: "信封拆封", icon: "💌" },
@@ -1269,8 +1274,7 @@ function GalleryPreview({ setup, t, font, style }) {
         {gallery[1] && <div className="mt-2 overflow-hidden" style={{ borderRadius: 10, aspectRatio: "3/2" }}>
           <div style={{ width: "100%", height: "100%", backgroundImage: `url(${gallery[1].src})`, backgroundSize: "cover", backgroundPosition: `${gallery[1].pos?.x||50}% ${gallery[1].pos?.y||35}%` }} />
         </div>}
-        <div className="mt-3 text-[11px] leading-6" style={{ color: "#8a6a5a" }}>往后余生彼此取暖{"
-"}是我能想到的最浪漫的事</div>
+        <div className="mt-3 text-[11px] leading-6" style={{ color: "#8a6a5a" }}>往后余生彼此取暖<br />是我能想到的最浪漫的事</div>
       </div>
     </div>
   );
@@ -2731,6 +2735,27 @@ function ThemeGallery({ onSelect, onDemo }) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Showcase Templates */}
+      <div className="px-4 pb-8">
+        <div className="text-center text-[10px] tracking-[0.4em] mb-3" style={{ color: "#cfa75a" }}>精选成品请帖</div>
+        <div className="grid grid-cols-2 gap-3">
+          {SHOWCASE_TEMPLATES.map(t => (
+            <a key={t.id} href={t.url} target="_blank" rel="noopener noreferrer"
+              className="relative overflow-hidden block"
+              style={{ borderRadius: 16, border: "2px solid transparent" }}>
+              <div style={{ aspectRatio: "9/14", background: t.bg, position: "relative", overflow: "hidden",
+                display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ fontSize: 56, color: t.gold, opacity: .85 }}>{t.orn}</div>
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "14px 10px 10px", background: "linear-gradient(transparent, rgba(0,0,0,.55))" }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: t.ink, letterSpacing: 1 }}>{t.name}</div>
+                  <div style={{ fontSize: 9, color: t.gold, letterSpacing: 1, marginTop: 2 }}>点击查看 ↗</div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Bottom CTA */}
